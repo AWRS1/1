@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWRS - The Well's Ever-Watching Eye</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --awrs-blue: #0D8ECF;
+            --awrs-turquoise: #2BC4C8;
+            --awrs-gray: #F5F7FA;
+            --awrs-dark: #333333;
+            --awrs-orange: #F2994A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--awrs-dark);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 20px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .blue-section {
+            background-color: var(--awrs-blue);
+            color: white;
+        }
+        
+        .gray-section {
+            background-color: var(--awrs-gray);
+        }
+        
+        .cta-button {
+            background-color: var(--awrs-orange);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            transition: all 0.3s;
+            padding: 1.25rem 0;
+            background-color: transparent;
+        }
+        
+        .navbar.scrolled {
+            background-color: white;
+            padding: 0.75rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar-logo {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: var(--awrs-blue);
+            text-decoration: none;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .navbar-link {
+            font-weight: 500;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        
+        .navbar-link:hover {
+            color: var(--awrs-blue);
+        }
+        
+        .navbar-mobile-toggle {
+            display: none;
+            color: var(--awrs-blue);
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .navbar-mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-mobile-link {
+            display: block;
+            padding: 0.5rem 0;
+            margin: 0 1.5rem;
+            color: var(--awrs-dark);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .navbar-mobile-link:hover {
+            color: var(--awrs-blue);
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(60%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+            max-width: 800px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        
+        /* About Section */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Problem Solution Section */
+        .problem-solution {
+            display: block;
+        }
+        
+        .problem-container, .solution-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .list-item-icon {
+            font-size: 1.875rem;
+            margin-right: 1rem;
+        }
+        
+        /* How It Works Section */
+        .how-it-works-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+        }
+        
+        .step-card {
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: transform 0.3s;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-0.5rem);
+        }
+        
+        .step-card-1 {
+            background-color: var(--awrs-blue);
+        }
+        
+        .step-card-2 {
+            background-color: var(--awrs-turquoise);
+        }
+        
+        .step-card-3 {
+            background-color: var(--awrs-orange);
+        }
+        
+        .step-card-4 {
+            background-color: var(--awrs-blue);
+        }
+        
+        .step-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .benefit-card:hover {
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 3.125rem;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+        
+        /* Team Data Section */
+        .team-data-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .team-card {
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .team-image {
+            height: 12rem;
+            overflow: hidden;
+        }
+        
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-content {
+            padding: 1rem;
+        }
+        
+        .team-name {
+            font-weight: bold;
+            font-size: 1.125rem;
+        }
+        
+        .team-role {
+            color: #666;
+        }
+        
+        .data-item {
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .data-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .data-label {
+            font-weight: 600;
+        }
+        
+        .data-value {
+            font-weight: bold;
+        }
+        
+        .data-bar-bg {
+            width: 100%;
+            background-color: #e5e5e5;
+            border-radius: 9999px;
+            height: 0.625rem;
+        }
+        
+        .data-bar {
+            height: 0.625rem;
+            border-radius: 9999px;
+        }
+        
+        .data-bar-1 {
+            background-color: #ef4444;
+            width: 50%;
+        }
+        
+        .data-bar-2 {
+            background-color: #eab308;
+            width: 25%;
+        }
+        
+        .data-bar-3 {
+            background-color: #22c55e;
+            width: 80%;
+        }
+        
+        .quote-box {
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--awrs-turquoise);
+            background-color: #f9fafb;
+            border-radius: 0.25rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .quote-text {
+            font-style: italic;
+            color: #4b5563;
+        }
+        
+        .quote-source {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+        
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-form {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            padding: 1.5rem 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            border-radius: 0.375rem;
+            border: 1px solid #d1d5db;
+            padding: 0.5rem;
+            margin-top: 0.25rem;
+        }
+        
+        .contact-info-section {
+            color: white;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .contact-info-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info-section h4 {
+            font-weight: 500;
+            font-size: 1.125rem;
+        }
+        
+        .contact-info {
+            margin-left: 0.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-icon {
+            margin-right: 0.5rem;
+        }
+        
+        .contact-link {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .contact-link:hover {
+            opacity: 0.8;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--awrs-dark);
+            color: white;
+            padding: 2rem 0;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-brand {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        
+        .footer-subtitle {
+            font-size: 0.875rem;
+            color: #d1d5db;
+        }
+        
+        .footer-copyright {
+            font-size: 0.875rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Media Queries */
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.75rem;
+            }
+            
+            .about-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .how-it-works-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-data-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .footer-container {
+                flex-direction: row;
+            }
+            
+            .footer-brand {
+                margin-bottom: 0;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .how-it-works-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Mobile Navigation */
+        @media (max-width: 767px) {
+            .navbar-links {
+                display: none;
+            }
+            
+            .navbar-mobile-toggle {
+                display: block;
+            }
+            
+            .navbar-mobile-menu.active {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="#home" class="navbar-logo">AWRS</a>
+            
+            <div class="navbar-links">
+                <a href="#home" class="navbar-link">Home</a>
+                <a href="#about" class="navbar-link">About</a>
+                <a href="#problem-solution" class="navbar-link">Problem & Solution</a>
+                <a href="#how-it-works" class="navbar-link">How It Works</a>
+                <a href="#benefits" class="navbar-link">Benefits</a>
+                <a href="#contact" class="navbar-link">Contact</a>
+            </div>
+            
+            <button class="navbar-mobile-toggle" id="mobile-toggle">
+                ☰
+            </button>
+        </div>
+        
+        <div class="navbar-mobile-menu" id="mobile-menu">
+            <a href="#home" class="navbar-mobile-link">Home</a>
+            <a href="#about" class="navbar-mobile-link">About</a>
+            <a href="#problem-solution" class="navbar-mobile-link">Problem & Solution</a>
+            <a href="#how-it-works" class="navbar-mobile-link">How It Works</a>
+            <a href="#benefits" class="navbar-mobile-link">Benefits</a>
+            <a href="#contact" class="navbar-mobile-link">Contact</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">💧 AWRS – The Well's Ever-Watching Eye</h1>
+            <p class="hero-subtitle">Total visibility. Complete safety. Guaranteed quality.</p>
+            <a href="#contact" class="cta-button">Book a Live Demo</a>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="gray-section">
+        <div class="section-container">
+            <div class="about-container">
+                <div>
+                    <h2 class="section-subtitle" style="color: var(--awrs-blue);">About Us</h2>
+                    <p class="text-lg">
+                        We are Abdulkareem Almohammad and Sultan AlGhamdi—hydrology experts and robotics engineers. 
+                        Driven by a passion for safeguarding groundwater, we created AWRS: the first fully autonomous 
+                        well-inspection robot delivering real-time, high-precision monitoring for water wells worldwide.
+                    </p>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1500673922987-e212871fec22?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" 
+                         alt="Team with AWRS prototype">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Problem Solution Section -->
+    <section id="problem-solution">
+        <!-- Problem Section -->
+        <div style="background-color: white;">
+            <div class="section-container">
+                <div class="problem-container">
+                    <h2 class="section-subtitle" style="color: var(--awrs-turquoise); text-align: center; margin-bottom: 2.5rem;">The Challenge</h2>
+                    <ul style="list-style: none;">
+                        <li class="list-item">
+                            <span class="list-item-icon">🔍</span>
+                            <span class="text-lg">Fewer than 50% of wells operate reliably—corrosion and blockages prevail.</span>
+                        </li>
+                        <li class="list-item">
+                            <span class="list-item-icon">⚠️</span>
+                            <span class="text-lg">25% of wells are contaminated by fluid or gas leaks, or rusty casings.</span>
+                        </li>
+                        <li class="list-item">
+                            <span class="list-item-icon">🪣</span>
+                            <span class="text-lg">Traditional "bucket & rope" sampling only checks one point and puts crews at risk.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solution Section -->
+        <div class="gray-section">
+            <div class="section-container">
+                <div class="solution-container">
+                    <h2 class="section-subtitle" style="color: var(--awrs-blue); text-align: center; margin-bottom: 2.5rem;">The AWRS Solution</h2>
+                    <ul style="list-style: none;">
+                        <li class="list-item">
+                            <span class="list-item-icon">🤖</span>
+                            <span class="text-lg">Autonomous crawler locks onto casings 7″–15″ in diameter.</span>
+                        </li>
+                        <li class="list-item">
+                            <span class="list-item-icon">🔬</span>
+                            <span class="text-lg">XRF + laser pinpoint corrosion and leaks as small as 0.2 mm.</span>
+                        </li>
+                        <li class="list-item">
+                            <span class="list-item-icon">💧</span>
+                            <span class="text-lg">Dual 500 mL & 1 L samplers collect uncontaminated water at surface and depth.</span>
+                        </li>
+                        <li class="list-item">
+                            <span class="list-item-icon">📡</span>
+                            <span class="text-lg">Live video & data streamed via satellite to mobile & web dashboards.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works Section -->
+    <section id="how-it-works" style="background-color: white;">
+        <div class="section-container">
+            <h2 class="section-subtitle" style="color: var(--awrs-turquoise); text-align: center; margin-bottom: 3rem;">How AWRS Operates</h2>
+            
+            <div class="how-it-works-grid">
+                <div class="step-card step-card-1">
+                    <div class="step-icon">🔧</div>
+                    <h3 class="step-title">Deploy & Secure</h3>
+                    <p>Hydraulic wheels expand for a rock-solid grip inside the casing.</p>
+                </div>
+                
+                <div class="step-card step-card-2">
+                    <div class="step-icon">📐</div>
+                    <h3 class="step-title">Scan & Analyze</h3>
+                    <p>XRF, laser, and 360° camera capture every inch of the well interior.</p>
+                </div>
+                
+                <div class="step-card step-card-3">
+                    <div class="step-icon">💧</div>
+                    <h3 class="step-title">Sample Collection</h3>
+                    <p>Automated arms extend, grab water, then reseal to prevent cross-contamination.</p>
+                </div>
+                
+                <div class="step-card step-card-4">
+                    <div class="step-icon">📲</div>
+                    <h3 class="step-title">Stream & Alert</h3>
+                    <p>Instant notifications and full data reports at the first sign of trouble.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits Section -->
+    <section id="benefits" class="gray-section">
+        <div class="section-container">
+            <h2 class="section-subtitle" style="color: var(--awrs-blue); text-align: center; margin-bottom: 3rem;">Why Choose AWRS?</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">👁️</div>
+                    <h3 class="benefit-title">360° Full Visibility</h3>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3 class="benefit-title">Remote Safety—no confined-space entry</h3>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">95%+ Sampling Accuracy vs. manual methods</h3>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3 class="benefit-title">Rapid Alerts—detect issues weeks earlier</h3>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌎</div>
+                    <h3 class="benefit-title">Global Scalability—agriculture to oilfields</h3>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚙️</div>
+                    <h3 class="benefit-title">Seamless Integration with existing systems</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Data Section -->
+    <section id="team-data" style="background-color: white;">
+        <div class="section-container">
+            <div class="team-data-grid">
+                <!-- Team Section -->
+                <div>
+                    <h2 class="section-subtitle" style="color: var(--awrs-blue); margin-bottom: 2rem;">Our Team</h2>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="team-image">
+                                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Sultan AlGhamdi">
+                            </div>
+                            <div class="team-content">
+                                <h3 class="team-name">Sultan AlGhamdi</h3>
+                                <p class="team-role">Hydrology Expert & Co-founder</p>
+                            </div>
+                        </div>
+                        
+                        <div class="team-card">
+                            <div class="team-image">
+                                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Abdulkareem Almohammad">
+                            </div>
+                            <div class="team-content">
+                                <h3 class="team-name">Abdulkareem Almohammad</h3>
+                                <p class="team-role">Robotics Engineer & Co-founder</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Section -->
+                <div>
+                    <h2 class="section-subtitle" style="color: var(--awrs-blue); margin-bottom: 2rem;">Data Insights</h2>
+                    
+                    <div>
+                        <div class="data-item">
+                            <div class="data-header">
+                                <span class="data-label">Reliable Operation</span>
+                                <span class="data-value">< 50%</span>
+                            </div>
+                            <div class="data-bar-bg">
+                                <div class="data-bar data-bar-1"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="data-item">
+                            <div class="data-header">
+                                <span class="data-label">Contamination Rate</span>
+                                <span class="data-value">25%</span>
+                            </div>
+                            <div class="data-bar-bg">
+                                <div class="data-bar data-bar-2"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="data-item">
+                            <div class="data-header">
+                                <span class="data-label">Leak Detection</span>
+                                <span class="data-value">0.2 mm</span>
+                            </div>
+                            <div class="data-bar-bg">
+                                <div class="data-bar data-bar-3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quote-box">
+                        <p class="quote-text">"25% of wells are contaminated by leaks or corrosion."</p>
+                        <p class="quote-source">– Abd-El-Mooty et al., 2016</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="blue-section">
+        <div class="section-container">
+            <h2 class="section-subtitle" style="color: white; text-align: center; margin-bottom: 3rem;">Get in Touch & Schedule a Live Demo</h2>
+            
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <form id="demo-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input 
+                                id="name" 
+                                name="name" 
+                                type="text" 
+                                placeholder="Your Name" 
+                                required 
+                                class="form-input"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input 
+                                id="email" 
+                                name="email" 
+                                type="email" 
+                                placeholder="your.email@example.com" 
+                                required 
+                                class="form-input"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input 
+                                id="phone" 
+                                name="phone" 
+                                type="text" 
+                                placeholder="+1 (555) 123-4567" 
+                                required 
+                                class="form-input"
+                            >
+                        </div>
+                        
+                        <button type="submit" class="cta-button" style="width: 100%;">Send Demo Request</button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="contact-info-section">
+                    <div>
+                        <h3>Direct Contacts</h3>
+                        
+                        <div>
+                            <h4>Sultan:</h4>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <span class="contact-icon">📱</span>
+                                    <span>0562 335 633</span>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon">📧</span>
+                                    <a href="mailto:sultan.alghamdi6677@icloud.com" class="contact-link">
+                                        sultan.alghamdi6677@icloud.com
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4>Abdulkareem:</h4>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <span class="contact-icon">📱</span>
+                                    <span>+966 50 075 2618</span>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon">📧</span>
+                                    <a href="mailto:abd.almohammad557@gmail.com" class="contact-link">
+                                        abd.almohammad557@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4>General Inquiries:</h4>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <span class="contact-icon">📧</span>
+                                    <a href="mailto:info@awrs-robot.com" class="contact-link">
+                                        info@awrs-robot.com
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <h3 class="footer-title">AWRS</h3>
+                <p class="footer-subtitle">The Well's Ever-Watching Eye</p>
+            </div>
+            
+            <div>
+                <p class="footer-copyright">&copy; <span id="current-year"></span> AWRS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+                // Change text color based on scroll
+                const links = document.querySelectorAll('.navbar-link');
+                links.forEach(link => {
+                    link.style.color = '#333333';
+                });
+            } else {
+                navbar.classList.remove('scrolled');
+                // Reset text color
+                const links = document.querySelectorAll('.navbar-link');
+                links.forEach(link => {
+                    link.style.color = 'white';
+                });
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = document.querySelectorAll('.navbar-mobile-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Form submission
+        const demoForm = document.getElementById('demo-form');
+        demoForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            
+            console.log('Form submitted:', { name, email, phone });
+            
+            // Show success message
+            alert('Demo request sent successfully! We\'ll be in touch soon.');
+            
+            // Reset form
+            demoForm.reset();
+        });
+    </script>
+</body>
+</html>
